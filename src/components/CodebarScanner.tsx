@@ -33,7 +33,7 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
         console.log("Código reconhecido:", res.getText());
         console.log('formato:', res.getBarcodeFormat())
         props.setCodigoLido(res.getText());
-        props.setCodigoLido(res.getBarcodeFormat().toString());
+        props.setCodigoLido(res.getText() + " - " + res.getBarcodeFormat().toString());
 
         props.setScannerEstaAtivo(false);
       }
