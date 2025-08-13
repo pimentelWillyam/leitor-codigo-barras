@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import { BrowserMultiFormatReader } from "@zxing/library";
+import { BarcodeFormat, BrowserMultiFormatReader, DecodeHintType } from "@zxing/library";
 import React from "react";
 // import { IsMobile } from "../helpers/IsMobile";
 
@@ -23,8 +23,10 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
   useEffect(() => {
       // if (!IsMobile.execute(navigator.userAgent)) return
       if (!props.scannerEstaAtivo) return
+      const hints = new Map();
+      hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.CODE_128]);
 
-    const codeReader = new BrowserMultiFormatReader();
+    const codeReader = new BrowserMultiFormatReader(hints);
     codeReader.decodeFromVideoDevice('', videoRef.current!, (res, err) => {
       if (videoRef.current && videoRef.current.srcObject) {
         setCameraAllowed(true);
