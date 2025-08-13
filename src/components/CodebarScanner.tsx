@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import React from "react";
-import { IsMobile } from "../helpers/IsMobile";
+// import { IsMobile } from "../helpers/IsMobile";
 
 const Container = styled.div`
   display: flex;
@@ -21,10 +21,8 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [cameraAllowed, setCameraAllowed] = useState(false)
   useEffect(() => {
-    if (!props.scannerEstaAtivo) return;
-      // const hints = new Map();
-      // hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.UPC_A]);
-      IsMobile.execute(navigator.userAgent)
+      // if (!IsMobile.execute(navigator.userAgent)) return
+      if (!props.scannerEstaAtivo) return
 
     const codeReader = new BrowserMultiFormatReader();
     codeReader.decodeFromVideoDevice('', videoRef.current!, (res, err) => {
@@ -35,6 +33,8 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
         console.log("Código reconhecido:", res.getText());
         console.log('formato:', res.getBarcodeFormat())
         props.setCodigoLido(res.getText());
+        props.setCodigoLido(res.getBarcodeFormat().toString());
+
         props.setScannerEstaAtivo(false);
       }
       if (err && err.name !== "NotFoundException") {
