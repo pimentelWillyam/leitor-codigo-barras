@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import { BrowserMultiFormatReader } from "@zxing/library";
+import { BarcodeFormat, BrowserMultiFormatReader, DecodeHintType } from "@zxing/library";
 import React from "react";
 
 const Container = styled.div`
@@ -18,11 +18,13 @@ interface CodebarScannerProps {
 
 export const CodebarScanner = (props: CodebarScannerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [result, setResult] = useState<string | null>(null);
   const [cameraAllowed, setCameraAllowed] = useState(false);
 
   useEffect(() => {
     if (!props.scannerEstaAtivo) return;
+      // const hints = new Map();
+      // hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.UPC_A]);
+
     const codeReader = new BrowserMultiFormatReader();
     codeReader.decodeFromVideoDevice('', videoRef.current!, (res, err) => {
       if (videoRef.current && videoRef.current.srcObject) {
@@ -30,7 +32,7 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
       }
       if (res) {
         console.log("Código reconhecido:", res.getText());
-        setResult(res.getText());
+        console.log('formato:', res.getBarcodeFormat())
         props.setCodigoLido(res.getText());
         props.setScannerEstaAtivo(false);
       }
@@ -45,14 +47,14 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
 
   return (
     <Container style={{ position: "relative" }}>
-      <video ref={videoRef} style={{ width: 900, height: 600, background: "#000" }} />
+      <video ref={videoRef} style={{ width: '90vw', height: '90vh', background: "#000" }} />
       {!cameraAllowed && (
         <div
           style={{
             position: "absolute",
-            top: 180,
-            left: 0,
-            width: 640,
+            top: "50%",
+            left: "25%",
+            width: "50%",
             height: 120,
             display: "flex",
             alignItems: "center",
@@ -64,10 +66,9 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
             textAlign: "center"
           }}
         >
-          📷 Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
+          Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
         </div>
       )}
-      {result && <div>Resultado: {result}</div>}
     </Container>
   );
 };
