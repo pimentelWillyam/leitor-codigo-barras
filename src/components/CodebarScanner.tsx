@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import React from "react";
+import { IsMobile } from "../helpers/IsMobile";
 
 const Container = styled.div`
   display: flex;
@@ -19,11 +20,11 @@ interface CodebarScannerProps {
 export const CodebarScanner = (props: CodebarScannerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [cameraAllowed, setCameraAllowed] = useState(false)
-
   useEffect(() => {
     if (!props.scannerEstaAtivo) return;
       // const hints = new Map();
       // hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.UPC_A]);
+      IsMobile.execute(navigator.userAgent)
 
     const codeReader = new BrowserMultiFormatReader();
     codeReader.decodeFromVideoDevice('', videoRef.current!, (res, err) => {
