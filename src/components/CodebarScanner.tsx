@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import { BarcodeFormat, BrowserMultiFormatReader, DecodeHintType } from "@zxing/library";
+import { BrowserMultiFormatReader } from "@zxing/library";
 import React from "react";
 
 const Container = styled.div`
