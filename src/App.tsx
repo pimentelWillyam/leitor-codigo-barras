@@ -11,6 +11,7 @@ function App() {
     <div>
     <CodebarScanner scannerEstaAtivo={scannerEstaAtivo}  setScannerEstaAtivo={setScannerEstaAtivo} setCodigoLido={setCodigoLido} />
     <h1>{codigoLido}</h1>
+    <h1>userAgent: {navigator.userAgent}</h1>
     </div>
   )
 }

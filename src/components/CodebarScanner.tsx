@@ -17,8 +17,8 @@ interface CodebarScannerProps {
 }
 
 export const CodebarScanner = (props: CodebarScannerProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [cameraAllowed, setCameraAllowed] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [cameraAllowed, setCameraAllowed] = useState(false)
 
   useEffect(() => {
     if (!props.scannerEstaAtivo) return;
