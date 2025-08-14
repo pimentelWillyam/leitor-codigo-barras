@@ -9,6 +9,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 `;
 
 interface CodebarScannerProps {
@@ -49,27 +53,36 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
   if (!props.scannerEstaAtivo) return null;
 
   return (
-    <Container style={{ position: "relative" }}>
-      <video ref={videoRef} style={{ width: '90vw', height: '90vh', background: "#000" }} />
+    <Container>
+      <video
+        ref={videoRef}
+        style={{
+          width: "100vw",
+          height: "100vh",
+          objectFit: "cover",
+          background: "#000",
+        }}
+      />
       {!cameraAllowed && (
         <div
           style={{
             position: "absolute",
-            top: "50%",
-            left: "25%",
-            width: "50%",
-            height: 120,
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#fff",
             background: "rgba(0,0,0,0.5)",
-            fontSize: "2rem",
+            fontSize: "1.3rem",
             pointerEvents: "none",
-            textAlign: "center"
+            textAlign: "center",
+            padding: "16px",
           }}
         >
-          Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
+          📷 Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
         </div>
       )}
     </Container>
