@@ -6,13 +6,12 @@ import React from "react";
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  width: 100vw;
-  height: 100vh;
+  width: 80vw;
+  height: 20vh;
   position: relative;
-  overflow: hidden;
 `;
 
 interface CodebarScannerProps {
@@ -57,8 +56,8 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
       <video
         ref={videoRef}
         style={{
-          width: "60vw",
-          height: "60vh",
+          width: "80vw",
+          height: "20vh",
           objectFit: "cover",
           background: "#000",
         }}
@@ -67,19 +66,15 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
         <div
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            width: "60vw",
-            height: "60vh",
+            width: "80vw",
+            height: "20vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#fff",
             background: "rgba(0,0,0,0.5)",
             fontSize: "1.3rem",
-            pointerEvents: "none",
             textAlign: "center",
-            padding: "16px",
           }}
         >
           Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
