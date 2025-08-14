@@ -69,8 +69,8 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
             position: "absolute",
             top: 0,
             left: 0,
-            width: "100vw",
-            height: "100vh",
+            width: "70vw",
+            height: "70vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -82,7 +82,7 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
             padding: "16px",
           }}
         >
-          📷 Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
+          Este aplicativo precisa acessar sua câmera para ler o código de barras. Por favor, autorize o acesso quando solicitado.
         </div>
       )}
     </Container>
