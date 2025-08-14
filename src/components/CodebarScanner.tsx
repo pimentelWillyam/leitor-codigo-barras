@@ -57,8 +57,8 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
       <video
         ref={videoRef}
         style={{
-          width: "100vw",
-          height: "100vh",
+          width: "60vw",
+          height: "60vh",
           objectFit: "cover",
           background: "#000",
         }}
@@ -69,8 +69,8 @@ export const CodebarScanner = (props: CodebarScannerProps) => {
             position: "absolute",
             top: 0,
             left: 0,
-            width: "70vw",
-            height: "70vh",
+            width: "60vw",
+            height: "60vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
